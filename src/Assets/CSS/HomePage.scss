@@ -14,6 +14,15 @@
             justify-content: center;
             gap: 50px;
             height: 100%;
+            .title{
+                font-size: 34px;
+                font-weight: 500;
+                line-height: 2.5rem;;
+            }
+
+            @include medium{
+                justify-content: flex-start;
+            }
         }
 
         .boxes{
@@ -45,8 +54,39 @@
             width: 100%;
 
             .wrapper{
-                padding-right: 0;
-                padding-top: 0;
+                padding: 20px 20px 0 20px;
+                
+                .title{
+                    width: 70%;
+                }
+
+                .boxes{
+                    padding: 5px;
+
+                    .box h1{
+                        font-size: 25px;
+                    }
+
+                    .box h2{
+                        font-size: 15px;
+                        padding: 0;
+                        margin: 0;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        @include small{
+            .wrapper{
+                gap: 40px;
+
+                .title{
+                    width: 95%;
+                    font-size: 28px;
+                    font-weight: 500;
+                    text-align: center;
+                }
             }
         }
     }

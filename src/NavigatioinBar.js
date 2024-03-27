@@ -6,6 +6,7 @@ import Menu from '@mui/icons-material/DragHandle';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
 
 
 
@@ -28,7 +29,7 @@ function NavigatioinBar() {
   return (
     <nav>
         <div className='left'>
-            <span className='logo'><img src={logo}  /> <strong>DeBees R-Estate</strong> </span>
+           <Link to='/'> <span className='logo'><img src={logo}  /> <strong>DeBees R-Estate</strong> </span></Link> 
             {
                 navLinkLeft.map((links, index) => {
                     return(

@@ -1,0 +1,37 @@
+.filter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .MuiStack-root{
+        display: flex;
+        gap: 0.5rem;
+
+        .MuiStack-root{
+            display: flex;
+            justify-content: space-around !important;
+            width: 100%;
+            margin: 0 auto;
+            .MuiFormControl-root{
+                margin: 0.2rem;
+                gap: 1rem;
+                justify-content: space-between; 
+                .MuiInputBase-root {
+                    width: 105px;
+                }
+                .MuiButtonBase-root{
+                        box-shadow: none;
+                        width: 100px;
+                        color: rgb(212, 212, 212) !important;
+                        background: orange;
+                        padding: 0 !important;
+
+                        .MuiSvgIcon-root{
+                            font-size: 2.2rem;
+                        }
+                    }
+            }
+        }
+    }
+}
