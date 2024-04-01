@@ -1,0 +1,268 @@
+@import './Variables.scss';
+@import './Responsive.scss';
+
+.list_detail{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
+
+    
+
+
+    .details{
+        flex: 3;
+        overflow: auto;
+
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
+        .wrapper{
+            padding: 10px;
+
+            .info{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+
+                .top{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .top_left{
+                        padding: 5px;
+
+                        h2{
+                            font-size: 1.5rem;
+                            font-weight: 550;
+                            color: #353535;
+                        }
+
+                        h3{
+                            padding-left: 1rem;
+                            color: grey;
+                            font-weight: 550;
+                        }
+
+                        .MuiButtonBase-root{
+                            color: grey;
+                        }
+
+                    }
+
+                    .top_right{
+                        background-color: $sec_color;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 10px 25px 10px 25px;
+                        cursor: pointer;
+
+                        img{
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                            object-fit: cover;
+
+                        }
+
+                        span{
+                            padding: 0;
+                            margin: 0;
+                            font-size: 1rem;
+                            font-weight: 500;
+                            color: grey;
+                        }
+                    }
+                }
+                .bottom{
+                    padding: 10px;
+                    margin-top: 40px; 
+                }
+
+                
+            }
+
+        }
+
+    }
+
+
+    .features{
+        flex: 2;
+        background: $sec_color;
+        width: 100%;
+        height: 100vh;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
+        .wrapper{
+            padding: 10px;
+
+            .title{
+                font-size: .850rem;
+                font-weight: 550;
+                margin: 10px 0 4px 0;
+                color: $text_color;
+            }
+
+            .list_vertical{
+                background-color: white;
+                border-radius: 8px;
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                
+
+                .icon_text{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: .3rem;
+                    
+                    .MuiButtonBase-root{
+                        padding: 0;
+                        margin: .4rem;
+                        color: $text_color;
+
+                        .textmui{
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            text-align: left;
+                            
+
+                            h2{
+                                margin: 0;
+                                font-size: .7rem;
+                                line-height: .3rem;
+                            }
+                            p{
+                                margin: 0;
+                                font-size: .7rem;
+                                text-transform: capitalize;
+                                margin-top: 0;
+                            }
+                        }
+                        
+                    }
+                   
+                }
+            }
+
+
+            .list_horizontal{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                .MuiButtonBase-root{
+                    background-color: white;
+                    margin: 5px;
+                    font-size: .8rem !important;
+                    text-transform: capitalize;
+                    color: $text_color;
+
+               
+                }    
+                 @include small{
+                    justify-content: flex-start;
+
+                    background: white;
+                    flex-direction: column;
+
+                       .MuiButtonBase-root{ font-size: 1rem !important;
+                        font-weight: 600;
+                        margin: 2px;
+                        color: black;}
+
+                        .css-lg6f1a-MuiTypography-root{
+                            display: flex;
+                        }
+                    }
+                    
+            }
+
+            .horizontal{
+                display: flex !important;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                background: white;
+
+                .icon_text{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: .5rem;
+                    
+                    .MuiButtonBase-root{
+                        padding: 0;
+                        margin: .5rem;
+                        color: $text_color;
+
+                        .textmui{
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            text-align: left;
+                            
+
+                            h2{
+                                margin: 0;
+                                font-size: .7rem;
+                                line-height: .3rem;
+                            }
+                            p{
+                                margin: 0;
+                                font-size: .7rem;
+                                text-transform: capitalize;
+                                margin-top: 0;
+                            }
+                        }
+                        
+                    }
+                   
+                }
+            }
+
+            .map_container{
+                width: 100%;
+                height:200px;
+                overflow-y: scroll;
+                
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+            }
+        }
+
+    }
+
+    @include medium{
+        flex-direction: column;
+        background-color: white;
+        overflow: auto;
+
+        .details{
+            flex-direction: column;
+            overflow: unset;
+        }
+
+        .features{
+            overflow: unset;
+        }
+    }
+}

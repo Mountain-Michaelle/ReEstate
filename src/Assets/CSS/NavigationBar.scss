@@ -1,4 +1,5 @@
 @import './Responsive.scss';
+@import './Variables.scss';
 
 nav{ 
     display: flex;
@@ -116,19 +117,19 @@ nav{
             position: fixed;
             width: 50%;
             max-width: 300px;
-            background: black;
+            background: #ffffffe3;
             height: 100vh;
             top: 0;
             right: 0%;
-            transition: all .8s ease;
+            transition: all .5s ease;
             display: inline;
             flex-direction: column;
             justify-content: center !important;
             align-items: center !important;
-            color: white !important;
-            z-index: 1;
+            color: black !important;
+            z-index: 100;
             transform: translateX(100%);
-
+            box-shadow: 1px 2px 5px rgba($color: #000000, $alpha: 1.0);
                 &.active{
                     transform: translateX(0);
                 }
@@ -152,7 +153,8 @@ nav{
                                 display: initial;
                                 padding: 10px;
                                 font-weight: 600;
-                                color: white;
+                                color: $text_color;
+                                font-size: 13px;
 
                                 &:hover{
                                     color: grey;
@@ -165,13 +167,14 @@ nav{
                     .exit{
                         position: absolute;
                         display: flex;
-                        right: 2%;
-                        top: 2%;
+                        right: 0.75%;
+                        top: 0.50%;
 
                         .MuiSvgIcon-root{
                             font-size: 1.5rem;
                             transition: all 0.3s ease;
-                            background: #ff7cdea5;
+                            background: $bee_color;
+                            color: purple;
                             border-radius: 50px;
 
                             &:hover{
@@ -187,13 +190,13 @@ nav{
         &.inactive{
             display: flex;
             position: absolute;
-            background: rgba(0, 0, 0, 0.197);
+            background: rgba(153, 153, 153, 0.115);
             width: 100%;
             height: 100vh;
             top: 0;
             right: 0;
             transition: all .8s ease;
-            z-index: 0;
+            z-index: 1;
         }
     }
 

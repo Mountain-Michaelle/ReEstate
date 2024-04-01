@@ -1,0 +1,49 @@
+@import '../../Assets/CSS/Variables.scss';
+@import './Responsive.scss';
+
+
+.user_container{
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
+
+    img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+
+        @include small{
+            margin-right: 2rem;
+        }
+    }
+
+    .MuiButtonBase-root{
+        background-color: orange;
+        .css-lg6f1a-MuiTypography-root{
+            font-size: .7rem !important;
+            color: $text_color !important;
+        }
+    }
+
+    .first_word{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 26px;
+        height: 26px;
+        margin: 0;
+        font-size: 1.3rem;
+        overflow: hidden;
+        object-fit: cover;
+        border-radius: 50%;
+        background-color: $bee_color;
+        font-weight: 750;
+        color: white;
+
+        @include small{
+            margin-right: 2.5rem;
+        }
+    }
+}

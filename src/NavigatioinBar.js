@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
+import { userData } from './Components/Data/dummyData';
+import User from './Components/RouteComp/User';
 
 
 
@@ -14,6 +16,8 @@ import { Link } from 'react-router-dom';
 
 const navLinkLeft = navbar.slice(0, 3);
 const navLinkRight = navbar.slice(-1);
+
+const user = true;
 
 function NavigatioinBar() {
 
@@ -39,16 +43,25 @@ function NavigatioinBar() {
             }
         </div>
         <div className='right'>
-        {
-            navLinkRight.map((links, index) => {
-                return(
+            {
+                user ? (
+
+                    <User datas={userData} />
+                ):
+                <>
+            {
+                navLinkRight.map((links, index) => {
+                    return(
                     <>
-                 <span>{links.navLink}</span>
-                <span className='sign_up'>Sign Up</span>
-                </> 
-                )
-            })
-        }
+                        <span>{links.navLink}</span>
+                        <span className='sign_up'>Sign Up</span>
+                    </> 
+                    )
+                })
+            }
+                </>
+            }
+       
 
         <div className='menuIcon' onClick={handleIsOpen}><IconButton size='medium' color='warning'><Menu /></IconButton> </div>
             <div className={isOpen ? "menu active": "menu"}>

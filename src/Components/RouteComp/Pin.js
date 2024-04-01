@@ -1,0 +1,26 @@
+import React from 'react'
+import { Marker, Popup } from 'react-leaflet';
+import '../../Assets/CSS/Pin.scss';
+import { Link } from 'react-router-dom';
+
+
+function Pin({item}) {
+  return (
+    <Marker position={[item.latitude, item.longitude]}>
+        <Popup>
+            <div className='pup_container'>
+                <img src={item.img} alt="" />
+
+                <div className='text_container'>
+                    <Link to={`detail/${item.id}`}>{item.title}</Link>
+                    <span className='bed'>{item.bedrooms} bedroom</span>
+
+                    <span className='price'><small>$</small> {item.price}</span>
+                </div>
+            </div>
+        </Popup>
+    </Marker>
+  )
+}
+
+export default Pin

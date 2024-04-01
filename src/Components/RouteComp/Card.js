@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 import '../../Assets/CSS/Card.scss';
+import {Button} from '@mui/material';
 import Typography from '@mui/material/Typography'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
@@ -13,7 +14,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 function Card({key, item}) {
   return (
     <div className='card'>
-        <Link to='' className='img_container'><img src={item.img} alt="" /></Link>
+        <Link to={`detail/${item.id}`} className='img_container'><img src={item.img} alt="" /></Link>
 
         <div className='text_container'>
             <div className='header'> <span><FmdGoodOutlinedIcon/></span>{item.address}</div>
@@ -22,8 +23,8 @@ function Card({key, item}) {
 
             <div className='bottom'>
                 <div className='bottom_left'>
-                    <span className='btn'> <span><BedOutlinedIcon /></span><b>{item.bedrooms} Bedroom</b></span>
-                    <span className='btn'> <span><BedroomChildOutlinedIcon /></span><b>{item.bathroom} Bathroom</b></span>   
+                    <Button className='btn' startIcon={<BedOutlinedIcon />} variant='outlined' color='warning' size='small'><b>{item.bedrooms} Bedroom</b></Button>
+                    <Button className='btn' startIcon={<BedroomChildOutlinedIcon />} variant='outlined' color='warning' size='small'><b>{item.bathroom} Bathroom</b></Button>   
                 </div>
 
                 <div className='bottom_right'>
