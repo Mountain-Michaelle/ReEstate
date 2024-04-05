@@ -1,0 +1,132 @@
+@import './Variables.scss';
+@import './Responsive.scss';
+
+
+.register_page{
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    .page_left{
+        flex: 3;
+        position: relative;
+        background-image: url('../Images/ImgEstate.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        
+        .over_design{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.389);
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .page_right{
+        background: $sec_color;
+        display: flex;
+        justify-content: center;
+        flex: 2;
+
+        .wrapper{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            text-transform: capitalize;
+            margin-top: 3rem;
+            padding: 10px;
+
+            .text-top{
+                padding: 5px;
+                font-size: 1.3rem;
+                padding-left: 1.3rem;
+                color: orange;
+            }
+            .MuiFormGroup-root{
+                display: flex;
+                flex-direction: column;
+                margin: 0 auto;
+                padding-top: 1rem;;
+                gap: 1rem;
+                width: 90%;
+
+               .MuiTextField-root{
+                display: flex;
+                width: 100%;
+                margin: 0 auto;
+                    input{
+                         &.placeholder{  
+                    color: red;
+                }  
+                    }
+             
+               }
+
+                .btn{
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    .MuiButtonBase-root{
+                    width: 175px;
+                    padding: 10px;
+                }  
+                }
+           
+            }
+
+            .p_text{
+                display: flex;
+                margin-top: 3rem;
+                width: 100%;
+                padding-left: 1.5rem;
+
+                p{
+                    margin: 0;
+                    padding: 0;
+                    color:grey;
+                    text-align: left;
+
+                    a{
+                        color: purple;
+                        font-weight: 500;
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    @include medium{
+        .page_left{
+            display: none;
+            
+        }
+
+        .page_right{
+            flex: 1;
+            background-image: url('../Images/ImgEstate.png');
+            background-size: cover;
+
+            .wrapper{
+                background-color: #ffffffe3;
+                justify-content: center;
+                padding: 0;
+                overflow: hidden;
+                margin: 2rem auto;
+                margin-right: 5rem;
+                margin-left: 5rem;
+                
+                @include small{
+                    justify-content: flex-start;
+                    background-color: #ffffffd6;
+                    width: 100%;
+                    height: 100%;
+                    padding-top: 3rem;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

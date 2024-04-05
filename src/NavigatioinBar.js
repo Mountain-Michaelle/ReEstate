@@ -6,7 +6,7 @@ import Menu from '@mui/icons-material/DragHandle';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userData } from './Components/Data/dummyData';
 import User from './Components/RouteComp/User';
 
@@ -17,9 +17,10 @@ import User from './Components/RouteComp/User';
 const navLinkLeft = navbar.slice(0, 3);
 const navLinkRight = navbar.slice(-1);
 
-const user = true;
+const user = false;
 
 function NavigatioinBar() {
+    const navigate = useNavigate()
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -30,6 +31,14 @@ function NavigatioinBar() {
     const handleClose = () => {
         setIsOpen(false)
     }
+
+    const handleLink = (link) => {
+        if(link.url){
+            navigate(link.url)
+            setIsOpen(false)
+        }
+    }
+
   return (
     <nav>
         <div className='left'>
@@ -37,7 +46,7 @@ function NavigatioinBar() {
             {
                 navLinkLeft.map((links, index) => {
                     return(
-                        <span key={index}>{links.navLink}</span>
+                        <span key={index}> <Link to={links.url}>{links.navLink}</Link> </span>
                     )
                 })
             }
@@ -53,8 +62,8 @@ function NavigatioinBar() {
                 navLinkRight.map((links, index) => {
                     return(
                     <>
-                        <span>{links.navLink}</span>
-                        <span className='sign_up'>Sign Up</span>
+                        <span><Link to={links.url}>{links.navLink}</Link></span>
+                        <span className='sign_up'><Link to='sign-up'>Sign Up</Link></span>
                     </> 
                     )
                 })
@@ -71,8 +80,8 @@ function NavigatioinBar() {
                     navbar.map((links, index) => {
                         return(
                             
-                                <span>
-                                    {links.navLink}
+                                <span onClick={() => handleLink(links)}>
+                                    {links.navLink} 
                                 </span>  
                            
                         )
