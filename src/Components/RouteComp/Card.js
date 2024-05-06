@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 import '../../Assets/CSS/Card.scss';
-import {Button} from '@mui/material';
+import {Button, ListItemButton} from '@mui/material';
 import Typography from '@mui/material/Typography'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
@@ -12,14 +12,24 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 function Card({key, item}) {
+    const {title, address, main_image, price, slug, bathroom } = item
+
+    const numberWithCommas = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    const prize = numberWithCommas(price)
+    
+
   return (
     <div className='card'>
-        <Link to={`detail/${item.id}`} className='img_container'><img src={item.img} alt="" /></Link>
+        <Link to={`${item.slug}`} className='img_container'>
+            <img src={`${process.env.REACT_APP_ENDPOINT_URL}${main_image}`} alt="" />
+        </Link>
 
         <div className='text_container'>
             <div className='header'> <span><FmdGoodOutlinedIcon/></span>{item.address}</div>
-
-            <h2><small>$</small>{item.price}</h2>
+            <h1>{title}</h1>
+            <h2><small>$</small>{prize}</h2>
 
             <div className='bottom'>
                 <div className='bottom_left'>

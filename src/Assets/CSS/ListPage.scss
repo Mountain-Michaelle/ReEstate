@@ -8,6 +8,7 @@
 
     .description_text{
         padding: 15px 10px 10px 10px;
+        display: flex;
     }
 
     .list_left_container{
@@ -19,13 +20,45 @@
             display: none;
         }
         
+        .desc{
+            margin-left: 1rem;
+            padding: 20px;
+
+            .MuiTypography-root{
+                padding:0 !important;
+
+                strong{
+                    color: rgb(202, 131, 0);
+                }
+            }
+        }
 
         .wrapper{
             width: 100%;
-            padding: 10px;
-            display: flex;overflow: auto;
-            flex-direction: column;
-            padding-bottom: 2rem;
+            display: flex;
+            flex-direction: row;
+            
+
+
+            .laoding{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+
+        .pagination{
+            display: flex;
+            width: 100%;
+            padding-bottom: 1.5rem;
+            justify-content: right;
+            
+            .wrap{
+                display: flex;
+                flex-direction: row;
+                justify-content: right;
+                margin: 2rem;
+            }
         }
     }
 

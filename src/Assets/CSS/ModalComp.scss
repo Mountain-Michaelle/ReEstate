@@ -1,0 +1,91 @@
+
+// .modalbody{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 100%;
+//     position: relative;
+//     color: white;
+//     z-index: ;
+
+//     close
+    .MuiModal-root{
+      overflow: auto !important;
+    }  
+    .MuiModal-root::-webkit-scrollbar{
+            display: none !important;
+        }
+
+    .MuiBox-root{
+        background-color: white;
+
+        h3{
+            color: #f75200;
+            text-align: center;
+            text-transform: capitalize;
+            font-size: 1.3rem;
+        }
+
+        .MuiFormControl-root{
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            width: 90%;
+
+            .MuiTextField-root{
+                background-color: white;
+                margin: 0.5rem auto;
+            }
+
+        }
+
+        .MuiButton-root{
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+        .MuiFormControl-root{
+            background-color: rgb(253, 219, 255);
+          .MuiTypography-root{
+            color: red;
+        }  
+        }
+
+         .alert{
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        position: absolute;
+        z-index: 99999;
+        width: 100%;
+        top: 2%;
+        height: 135px;
+        transition: .5s all;
+
+        .cancle{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            position: fixed;
+            right: 5%;
+            top: 5%;
+
+            .MuiSvgIcon-root{
+                
+                &:hover{
+                    font-size: 2rem;
+                    transform: scale(1.0);
+                    transition: 0.4s all;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    }
+
+
+   

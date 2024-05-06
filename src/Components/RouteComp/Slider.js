@@ -6,7 +6,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import {IconButton} from '@mui/material';
 import { Icon } from 'leaflet';
 
-function Slider({slideImages}) {
+function Slider({slideImages, images, main_image}) {
 
     const [imgIndex, setImgIndex] = useState(null);
     const [indexe, setIndexe] = useState(0);
@@ -37,7 +37,7 @@ function Slider({slideImages}) {
         }
     
        <div className='larger_img'>
-          <img src={imgIndex !== null ? slideImages[imgIndex] : slideImages[0] } onClick={() => handleIndexClick(0)} alt='' />
+          <img src={main_image} onClick={() => handleIndexClick(0)} alt='' />
 
             <div className='arrows'>
                 <IconButton onClick={handleSlideNext()} color='warning' size='large'><ArrowBackIosNewOutlinedIcon /></IconButton>
@@ -47,9 +47,9 @@ function Slider({slideImages}) {
 
        <div className='smaller_imgs'>
         {
-            slideImages.map((item, index) => {
+            images.map((item, index) => {
                 return(
-                    <img key={index} src={item}  alt='' onClick={() => handleIndexClick(index)} />
+                    <img key={index} src={item.image}  alt='' onClick={() => handleIndexClick(index)} />
                 )
             })
         }

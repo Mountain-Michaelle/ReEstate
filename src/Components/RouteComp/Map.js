@@ -17,25 +17,29 @@ L.Icon.Default.mergeOptions({
 function Map({items}) {
 
     const position = [52.4797, -1.90260]
-
-
     try{
         
     return (
         <div>
-        <MapContainer center={[51.505, -0.09]} zoom={7} scrollWheelZoom={false} className='map'>
+        <MapContainer center={[6.4599, 	7.54894]} zoom={12} scrollWheelZoom={false} className='map'>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-      
-            <Pin item={items} />
-   
+            {
+                items.map((item, index) => {
+                    return(
+                       <Pin key={index} item={item} />  
+                    )
+                })
+               
+            }
+            
+
         </MapContainer>
         </div>
     )
     }
-    
     catch(error){
         console.log(error)
     }

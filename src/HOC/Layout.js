@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import {connect} from 'react-redux'
 import NavigatioinBar from '../NavigatioinBar'
+import { checkAuthentiated } from '../Redux/Actions/auth'
+
 
 const Layout = (props) => {
+  useEffect(() => {
+    props.checkAuthentiated()
+  },[])
+
   return (
     <div className='Layout'>
         <NavigatioinBar />
@@ -14,4 +21,4 @@ const Layout = (props) => {
   )
 }
 
-export default Layout
+export default connect(null, {checkAuthentiated})(Layout);

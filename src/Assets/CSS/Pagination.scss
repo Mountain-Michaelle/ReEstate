@@ -1,0 +1,34 @@
+.paginaton{
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    padding-bottom: 2rem;
+
+    .wrap{
+        display: flex;
+        margin-right: 2rem;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        height: 100%;
+        gap: .5rem;
+
+        .pagination_number{
+            height: 100%;
+            display: flex;
+            color: black;
+            font-weight: 560;
+            width: 100%;
+        }
+
+        .number{
+            display:flex;
+            background: black;
+            color: white;
+            padding: 10px;
+            height: 100%;
+            font-weight: 700;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+.not_found{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -5rem;
+        h1{
+            color: #cb9c9c;
+        }
+        .MuiTypography-root{
+            color: grey;
+        }
+    }
+}

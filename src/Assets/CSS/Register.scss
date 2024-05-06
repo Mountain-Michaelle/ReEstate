@@ -10,7 +10,7 @@
     .page_left{
         flex: 3;
         position: relative;
-        background-image: url('../Images/ImgEstate.png');
+        background-image: url('../Images/sign.jpeg');
         background-size: cover;
         background-repeat: no-repeat;
         
@@ -48,8 +48,8 @@
                 display: flex;
                 flex-direction: column;
                 margin: 0 auto;
-                padding-top: 1rem;;
-                gap: 1rem;
+                padding-top: .5rem;;
+                gap: .5rem;
                 width: 90%;
 
                .MuiTextField-root{
@@ -65,12 +65,20 @@
                }
 
                 .btn{
+                    position: relative;
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     .MuiButtonBase-root{
-                    width: 175px;
-                    padding: 10px;
+                    width: 140px;
+                    padding: 7px;
+
+                    .loader{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 400px !important;
+                    }
                 }  
                 }
            
@@ -106,11 +114,11 @@
 
         .page_right{
             flex: 1;
-            background-image: url('../Images/ImgEstate.png');
+            background-image: url('../Images/sign.jpeg');
             background-size: cover;
 
             .wrapper{
-                background-color: #ffffffe3;
+                background-color:rgb(255 234 253 / 34%);
                 justify-content: center;
                 padding: 0;
                 overflow: hidden;
@@ -120,7 +128,7 @@
                 
                 @include small{
                     justify-content: flex-start;
-                    background-color: #ffffffd6;
+                    background-color: rgb(255 234 253 / 34%);
                     width: 100%;
                     height: 100%;
                     padding-top: 3rem;

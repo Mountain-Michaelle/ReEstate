@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography'
 import { TextField } from '@mui/material';
 import SearchBar from './SearchBar.js';
 
+
 const HomePage = () => {
 
   return (

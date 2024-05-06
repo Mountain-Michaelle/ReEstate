@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import '../../Assets/CSS/ListDetail.scss';
 import Slider from './Slider';
 import {Button, Typography, IconButton} from '@mui/material';
@@ -17,28 +17,111 @@ import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlin
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import Map from './Map';
+import axios from 'axios';
+import { useParams } from 'react-router';
+import { ModalComp } from './ModalComp';
 
 
 function ListDetail() {
+    const [data, setData] = useState([])
+    const [images, setImages] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+
+    const params = useParams()
+
+    const {slug, price} = params;
+
+    useEffect(() => {
+
+    const fetchData = async () => {
+        setLoading(true)
+        // const body = JSON.stringify({slug})
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${typeof window != 'undefined' && localStorage.getItem('token')}`
+                    }
+                }
+                try{
+                await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/re_app/detail/${slug}/`, config)
+                .then(res => {
+                    setData(res.data)
+                    setLoading(false)
+                })
+
+                }catch(error){
+                    setLoading(false)
+                }
+            }
+
+
+    fetchData();
+
+    },[slug])
+
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            setLoading(true)
+            // const body = JSON.stringify({slug})
+                    const config = {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Authorization': `Bearer ${typeof window != 'undefined' && localStorage.getItem('token')}`
+                        }
+                    }
+
+                    try{
+                    await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/re_app/post-images/${slug}/`, config)
+                    .then(res => {
+                        setImages(res.data?.results)
+                        setLoading(false)
+                    })
+    
+                    }catch(error){
+                        setLoading(false)
+                    }
+                }
+    
+    
+        fetchData();
+    
+        },[slug])
+
+        console.log(images.results)
+
+    const handleOpen = () => {
+        setIsOpen(true)
+    }
+
+    const handleClose = () => {
+        setIsOpen(false)
+    }
+
+
   return (
     <div className='list_detail'>
         <div className='details'>
             <div className='wrapper'>
-                <Slider slideImages={singlePostData.images} />
+                <Slider slideImages={singlePostData.images} images={images} main_image={data.main_image} />
 
                 <div className='info'>
                     <div className='top'>
                         <span className='top_left'>
-                            <h2>{singlePostData.title}</h2>
+                            <h2>{data.title}</h2>
 
-                            <Button startIcon={<FmdGoodOutlinedIcon />} variant='text' color='warning' disableRipple disableTouchRipple>{singlePostData.address}</Button>
+                            <Button startIcon={<FmdGoodOutlinedIcon />} variant='text' color='warning' disableRipple disableTouchRipple>{data.address}</Button>
 
-                            <h3><small>$</small> {singlePostData.price}</h3>
+                            <h3><small>$</small> {data.price}</h3>
 
                         </span>
 
                         <span className='top_right'>
-                            <img src={userData.img} alt='' />
+                            <img src={data.main_image} alt='' />
                             <span>{userData.name}</span>
                         </span>
                     </div>
@@ -47,7 +130,7 @@ function ListDetail() {
                         <Typography variant="body1" color="initial.light">
 
                         {
-                            singlePostData.description
+                            data.description
                         }
 
                         </Typography>
@@ -85,11 +168,11 @@ function ListDetail() {
                 <p className='title'>Room Sizes</p>
                     <div className='list_horizontal'>
                         <Button startIcon={<RatioOutlinedIcon />} size='small'>
-                            80sqm (861sqft)
+                            {data.sqft} (861sqft)
                         </Button>
 
                         <Button startIcon={<BedroomChildOutlinedIcon />} size='small'>
-                            2 bedroom
+                            {data.bedroom} bedrooms
                         </Button>
 
                         <Button startIcon={<BathtubOutlinedIcon />} size='small'>
@@ -124,9 +207,11 @@ function ListDetail() {
                     </div>
 
                     <div className='list_horizontal space' style={{margin: '2rem 0 2rem 0'}}>
-                        <Button variant='outlined' size='large' color='warning' startIcon={<ChatBubbleOutlineOutlinedIcon />} disableRipple>
+
+                        <Button onClick={handleOpen} variant='outlined' size='large' color='warning' startIcon={<ChatBubbleOutlineOutlinedIcon />} disableRipple>
                             <Typography variant="subtitle2" component='h5' color="initial">Send a message</Typography>
                         </Button>
+                        <ModalComp isOpen={isOpen} isClose={handleClose} />
 
                         <Button startIcon={<BookmarkBorderOutlinedIcon />}variant='outlined' size='large' color='warning' disableRipple>
                         <Typography variant="subtitle2" component='h5' color="initial">Save the Place</Typography>

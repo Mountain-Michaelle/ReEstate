@@ -9,12 +9,11 @@ function Pin({item}) {
     <Marker position={[item.latitude, item.longitude]}>
         <Popup>
             <div className='pup_container'>
-                <img src={item.img} alt="" />
+                <img src={process.env.REACT_APP_ENDPOINT_URL + item.main_image} alt="" />
 
                 <div className='text_container'>
-                    <Link to={`detail/${item.id}`}>{item.title}</Link>
+                    <Link to={`${item.slug}`}>{item.title}</Link>
                     <span className='bed'>{item.bedrooms} bedroom</span>
-
                     <span className='price'><small>$</small> {item.price}</span>
                 </div>
             </div>
