@@ -9,3 +9,5 @@ export const LOAD_USER_FAIL = 'LOAD_USER_FAIL';
 export const IS_LOADING = 'IS_LOADING';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_FAIL = 'LOGOUT_FAIL';

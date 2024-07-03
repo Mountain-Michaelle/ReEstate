@@ -27,6 +27,20 @@
         }
     }
 
+    .profile{
+        display: flex;
+
+        @include medium{
+            .span{
+                display: none;
+            }
+
+            .name{
+                display: none;
+            }
+        }
+    }
+
     .first_word{
         display: flex;
         justify-content: center;
@@ -43,7 +57,7 @@
         color: white;
 
         @include small{
-            margin-right: 2.5rem;
+            margin-right: 0;
         }
     }
 }

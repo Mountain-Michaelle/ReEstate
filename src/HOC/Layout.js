@@ -7,7 +7,7 @@ import { checkAuthentiated } from '../Redux/Actions/auth'
 const Layout = (props) => {
   useEffect(() => {
     props.checkAuthentiated()
-  },[])
+  },[props.isAuthentication])
 
   return (
     <div className='Layout'>
@@ -20,5 +20,7 @@ const Layout = (props) => {
     </div>
   )
 }
-
-export default connect(null, {checkAuthentiated})(Layout);
+const mapStateToProps = state => ({
+  isAuthentication: state.auth.isAuthentication
+})
+export default connect(mapStateToProps, {checkAuthentiated})(Layout);

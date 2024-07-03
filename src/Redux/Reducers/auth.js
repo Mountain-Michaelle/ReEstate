@@ -7,7 +7,9 @@ import {
     SIGNUP_FAIL,
     LOAD_USER_FAIL,
     LOAD_USER_SUCCESS,
-    IS_LOADING
+    IS_LOADING,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAIL,
 
  } from "../Actions/types";
 
@@ -102,8 +104,21 @@ export default function(state=initialState, action){
                 loading: false,
             }
 
-        
+        case LOGOUT_SUCCESS:
+            typeof window != 'undefined' && localStorage.removeItem('token')
+            typeof window != 'undefined' && localStorage.removeItem('refresh')
+            
+            return{
+                ...state,
+                user: [],
+                token: null,
+                isAuthenticated: false,
+            }
 
+        case LOGOUT_FAIL:
+            return{
+                ...state
+            }
         default:
             return state;
     }

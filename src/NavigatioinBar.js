@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Assets/CSS/NavigationBar.scss';
+import { connect } from 'react-redux';
 import logo from './Assets/Images/DeBees.png';
 import navbar from '../src/Components/Data/navbar.js';
 import Menu from '@mui/icons-material/DragHandle';
@@ -8,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import { Link, useNavigate } from 'react-router-dom';
 import { userData } from './Components/Data/dummyData';
+import { Logout } from './Redux/Actions/auth';
 import User from './Components/RouteComp/User';
 
 
@@ -17,11 +19,9 @@ import User from './Components/RouteComp/User';
 const navLinkLeft = navbar.slice(0, 3);
 const navLinkRight = navbar.slice(-1);
 
-const user = false;
-
-function NavigatioinBar() {
+function NavigatioinBar({Logout, isAuthenticated, user}) {
     const navigate = useNavigate()
-
+    const [isauth, setIsAuth] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
     const handleIsOpen = () => {
@@ -39,6 +39,13 @@ function NavigatioinBar() {
         }
     }
 
+    useEffect(() => {
+        if(isAuthenticated){
+            setIsAuth(true)
+        }else{
+            setIsAuth(false)
+        }
+    },[isAuthenticated])
   return (
     <nav>
         <div className='left'>
@@ -53,9 +60,9 @@ function NavigatioinBar() {
         </div>
         <div className='right'>
             {
-                user ? (
+                isauth ? (
 
-                    <User datas={userData} />
+                    <User datas={userData} isAuthenticated={isAuthenticated} user={user} />
                 ):
                 <>
             {
@@ -96,5 +103,8 @@ function NavigatioinBar() {
     </nav>
   )
 }
-
-export default NavigatioinBar
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
+})
+export default connect(mapStateToProps, {Logout})(NavigatioinBar)

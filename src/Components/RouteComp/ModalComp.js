@@ -32,7 +32,6 @@ export const ModalComp = ({isOpen, isClose}) => {
     const [loading, setLoading] = useState(false)
     const [sent, setSent] = useState(false)
 
-
     const style = {
         position: 'absolute',
         top: '50%',
@@ -186,7 +185,6 @@ export const ModalComp = ({isOpen, isClose}) => {
                     //     </Button> }
                          >
                         <span>
-
                              <h3>
                             Thank You
                             </h3> 

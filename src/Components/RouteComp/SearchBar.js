@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, FormHelperText, IconButton, Stack, TextField, Typography } from '@mui/material'
+import { Autocomplete, Box, Button, ButtonGroup, FormHelperText, IconButton, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import axios from 'axios'
@@ -8,6 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { NumericFormat, NumericFormatProps } from 'react-number-format';
 
 const SearchBar = () => {
+
 
   const [searchResult, setSearchResult] = useState([])
   const [searchError, setSearchError] = useState('')
@@ -22,10 +23,24 @@ const SearchBar = () => {
     improper: ''
   })
 
+
+  const skills = ['Enugu', 'Lagos', 'Anambra'];
+  const maxPrice = ['1000000', '100000000']
+
+  const cityOption = skills.map((skill, index) => ({
+    id: index + 1,
+    label: skill
+  }))
+
+  const priceOption = maxPrice.map((max_p, index) => ({
+    id: index + 1,
+    label: max_p
+  }))
+
   const [query, setQuery] = useState({type: 'Buy'})
 
   const [indexe, setIndex] = useState(0);
-  const [sale_type , setSale_Type] = useState('')
+  const [sale_type , setSale_Type] = useState('Buy')
 
 
   const [values, setValues] = useState({
@@ -36,10 +51,18 @@ const SearchBar = () => {
 
   const {cityError, max_priceError, min_priceError, improper} = error
   const {city, min_price, max_price} = values
+
   const handleChange = (e) => {
   setValues({...values, [e.target.name]: e.target.value})
   }
 
+  const handleCityChange = (event, value) => {
+    setValues({...values, city: value ? value.label : ''})
+  }
+
+  const handlePriceChange = (event, value) => {
+    setValues({...values, max_price: value ? value.label : ''})
+  }
 
   const switchType = (value, index) => {
     setSale_Type(value.type)
@@ -86,11 +109,11 @@ const handleSubmit = async () => {
 
               const res = await axios.post(`${process.env.REACT_APP_ENDPOINT_URL}/re_app/`, body, config)
               setLoading(false)
-              if(res.data.results){
+              if(res.data?.results){
                 navigate(`/listing/${sale_type}/${city}/${max_price}/${min_price}`)
 
               }else if(res.data.error){
-                setSearchError(res.data.error)
+                setSearchError(res.data?.error)
                 navigate(``)
               }else{
                 navigate('')
@@ -131,21 +154,32 @@ console.log(min_price == isInteger())
             
         </ButtonGroup>
         <Stack spacing={2} direction='row'>
+            <Autocomplete  xs={{width:'300px'}} options={cityOption} renderInput={(params) => 
 
-            <TextField label='City' name='city' value={city} onChange={handleChange} color='secondary' variant='standard' type='text' size='small' 
-            error={cityError}
-            helperText={cityError && cityError}
+              <TextField {...params} label='City' name='city' value={city} onChange={handleChange}
+              color='secondary' variant='standard' type='text' size='small' 
+              error={cityError}
+              helperText={cityError && cityError}
+              /> }
+              onChange={handleCityChange}
             />
+           
 
             <TextField label='Min price' name='min_price' value={min_price} onChange={handleChange} color='secondary' variant='standard' type='text' size='small' 
              error={min_priceError}
              helperText={min_priceError && min_priceError}
             />
 
-            <TextField label='Max price' name='max_price' value={max_price} onChange={handleChange}  color='secondary'  variant='standard' type='text' size='small' 
+            <Autocomplete options={priceOption} renderInput={(params) => 
+            <TextField label='Max price' {...params} name='max_price' value={max_price} onChange={handleChange}  color='secondary'  variant='standard' type='text' size='small' 
               error={max_priceError}
               helperText={max_priceError && max_priceError}
             />
+            } 
+            onChange={handlePriceChange}
+
+            />
+
 
             { 
             loading ? 

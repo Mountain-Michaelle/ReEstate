@@ -20,6 +20,7 @@ import Map from './Map';
 import axios from 'axios';
 import { useParams } from 'react-router';
 import { ModalComp } from './ModalComp';
+import DetailMap from './DetailMap';
 
 
 function ListDetail() {
@@ -47,7 +48,7 @@ function ListDetail() {
                 try{
                 await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/re_app/detail/${slug}/`, config)
                 .then(res => {
-                    setData(res.data)
+                    setData(res?.data)
                     setLoading(false)
                 })
 
@@ -81,7 +82,7 @@ function ListDetail() {
                         setImages(res.data?.results)
                         setLoading(false)
                     })
-    
+
                     }catch(error){
                         setLoading(false)
                     }
@@ -92,7 +93,7 @@ function ListDetail() {
     
         },[slug])
 
-        console.log(images.results)
+        console.log(data.latitude)
 
     const handleOpen = () => {
         setIsOpen(true)
@@ -178,6 +179,7 @@ function ListDetail() {
                         <Button startIcon={<BathtubOutlinedIcon />} size='small'>
                             80sqm (861sqft)
                         </Button>
+                        
                     </div>
                 <p className='title'>Nearby Places</p>
 
@@ -203,7 +205,7 @@ function ListDetail() {
 
                 <p className='title'>Location</p>
                     <div className='map_container'>
-                        <Map items={singlePostData} />
+                        <DetailMap latitude={data.latitude ? data.latitude : ''} longitude={data.latitude ? data.longitude: ''} image={data.main_image ? data.main_image : ''} />
                     </div>
 
                     <div className='list_horizontal space' style={{margin: '2rem 0 2rem 0'}}>
@@ -211,11 +213,12 @@ function ListDetail() {
                         <Button onClick={handleOpen} variant='outlined' size='large' color='warning' startIcon={<ChatBubbleOutlineOutlinedIcon />} disableRipple>
                             <Typography variant="subtitle2" component='h5' color="initial">Send a message</Typography>
                         </Button>
-                        <ModalComp isOpen={isOpen} isClose={handleClose} />
+                        <ModalComp isOpen={isOpen} isClose={handleClose}/>
 
                         <Button startIcon={<BookmarkBorderOutlinedIcon />}variant='outlined' size='large' color='warning' disableRipple>
                         <Typography variant="subtitle2" component='h5' color="initial">Save the Place</Typography>
                         </Button>
+
                     </div>
                     
             </div>
